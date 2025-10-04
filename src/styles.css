@@ -45,7 +45,7 @@ svg {
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 3s infinite linear;
+  animation: shine 10s infinite linear; /* Changed to 10 seconds */
   display: inline-block; /* Ensures background-clip works correctly */
 }
 

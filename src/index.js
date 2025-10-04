@@ -16,10 +16,10 @@ function Layout() {
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
         {/* Central Title */}
         <div style={{ position: 'absolute', top: 20, width: '100%', textAlign: 'center', pointerEvents: 'none', lineHeight: '1em' }}>
-          <ShinyText style={{ fontSize: '4vw', fontWeight: 'bold' }}>Shea.Glass</ShinyText>
+          <ShinyText style={{ fontSize: '3vw', fontWeight: 'bold' }}>Shea.Glass</ShinyText> {/* Smaller font size */}
         </div>
         {/* Recent Projects Section */}
-        <div style={{ position: 'absolute', top: 'calc(20px + 4vw + 10px)', width: '100%', textAlign: 'center', fontSize: '2vw', color: 'white', pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', top: 'calc(20px + 3vw + 10px)', width: '100%', textAlign: 'center', fontSize: '1.5vw', color: 'white', pointerEvents: 'none' }}> {/* Smaller font size and adjusted top */}
           Recent Projects
         </div>
         {/* Navigation links on the right */}
