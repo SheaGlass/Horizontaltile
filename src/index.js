@@ -15,15 +15,15 @@ function Layout() {
     <>
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
         {/* Central Title */}
-        <div style={{ position: 'absolute', top: 40, width: '100%', textAlign: 'center', pointerEvents: 'none', lineHeight: '1em' }}>
+        <div style={{ position: 'absolute', top: 80, width: '100%', textAlign: 'center', pointerEvents: 'none', lineHeight: '1em' }}> {/* Increased top value */}
           <ShinyText style={{ fontSize: '3vw', fontWeight: 'bold' }}>Shea.Glass</ShinyText>
         </div>
         {/* Recent Projects Section */}
-        <div style={{ position: 'absolute', top: 'calc(40px + 3vw + 10px)', width: '100%', textAlign: 'center', fontSize: '1.5vw', color: 'white', pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', top: 'calc(80px + 3vw + 10px)', width: '100%', textAlign: 'center', fontSize: '1.5vw', color: 'white', pointerEvents: 'none' }}> {/* Adjusted top value based on new title position */}
           Recent Projects
         </div>
         {/* Navigation links on the right */}
-        <div style={{ position: 'absolute', top: 60, right: 40, display: 'flex', gap: '20px', pointerEvents: 'auto' }}>
+        <div style={{ position: 'absolute', top: 100, right: 40, display: 'flex', gap: '20px', pointerEvents: 'auto' }}> {/* Adjusted top value */}
           <Link to="/about" style={{ textDecoration: 'none', color: 'white' }} onClick={() => (state.clicked = null)}>About</Link>
           <Link to="/contact" style={{ textDecoration: 'none', color: 'white' }} onClick={() => (state.clicked = null)}>Contact</Link>
         </div>
