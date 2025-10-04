@@ -41,6 +41,10 @@ importers:
       valtio:
         specifier: 1.10.3
         version: 1.10.3(react@18.2.0)
+    devDependencies:
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
 
 packages:
 
