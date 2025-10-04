@@ -4,69 +4,79 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Image, ScrollControls, Scroll, useScroll } from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
 import { easing } from 'maath'
+import { useNavigate } from 'react-router-dom' // Import useNavigate
 
 const material = new THREE.LineBasicMaterial({ color: 'white' })
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
 
-// Export the state so it can be accessed by other components (like the overlay)
 export const state = proxy({
   clicked: null,
   projects: [
-    { id: 0, url: '/1.jpg', title: 'Project Alpha', link: 'https://example.com/alpha' },
-    { id: 1, url: '/2.jpg', title: 'Project Beta', link: 'https://example.com/beta' },
-    { id: 2, url: '/3.jpg', title: 'Project Gamma', link: 'https://example.com/gamma' },
-    { id: 3, url: '/4.jpg', title: 'Project Delta', link: 'https://example.com/delta' },
-    { id: 4, url: '/5.jpg', title: 'Project Epsilon', link: 'https://example.com/epsilon' },
-    { id: 5, url: '/6.jpg', title: 'Project Zeta', link: 'https://example.com/zeta' },
-    { id: 6, url: '/7.jpg', title: 'Project Eta', link: 'https://example.com/eta' },
-    { id: 7, url: '/8.jpg', title: 'Project Theta', link: 'https://example.com/theta' },
-    { id: 8, url: '/9.jpg', title: 'Project Iota', link: 'https://example.com/iota' },
-    { id: 9, url: '/10.jpg', title: 'Project Kappa', link: 'https://example.com/kappa' },
-    { id: 10, url: '/11.jpg', title: 'Project Lambda', link: 'https://example.com/lambda' },
-    { id: 11, url: '/12.jpg', title: 'Project Mu', link: 'https://example.com/mu' },
-    { id: 12, url: '/1.jpg', title: 'Project Nu', link: 'https://example.com/nu' },
-    { id: 13, url: '/5.jpg', title: 'Project Xi', link: 'https://example.com/xi' },
-    { id: 14, url: '/7.jpg', title: 'Project Omicron', link: 'https://example.com/omicron' },
-    { id: 15, url: '/8.jpg', title: 'Project Pi', link: 'https://example.com/pi' },
-    { id: 16, url: '/2.jpg', title: 'Project Rho', link: 'https://example.com/rho' },
-    { id: 17, url: '/4.jpg', title: 'Project Sigma', link: 'https://example.com/sigma' },
-    { id: 18, url: '/9.jpg', title: 'Project Tau', link: 'https://example.com/tau' },
-    { id: 19, url: '/6.jpg', title: 'Project Upsilon', link: 'https://example.com/upsilon' }
+    { id: 0, url: '/1.jpg', title: 'About Us', internalPath: '/about' }, // Internal link
+    { id: 1, url: '/2.jpg', title: 'My Portfolio', externalUrl: 'https://shea.glass/portfolio' }, // External link
+    { id: 2, url: '/3.jpg', title: 'Contact Me', internalPath: '/contact' }, // Internal link
+    { id: 3, url: '/4.jpg', title: 'Project Delta', externalUrl: 'https://example.com/delta' },
+    { id: 4, url: '/5.jpg', title: 'Project Epsilon', externalUrl: 'https://example.com/epsilon' },
+    { id: 5, url: '/6.jpg', title: 'Project Zeta', externalUrl: 'https://example.com/zeta' },
+    { id: 6, url: '/7.jpg', title: 'Project Eta', externalUrl: 'https://example.com/eta' },
+    { id: 7, url: '/8.jpg', title: 'Project Theta', externalUrl: 'https://example.com/theta' },
+    { id: 8, url: '/9.jpg', title: 'Project Iota', externalUrl: 'https://example.com/iota' },
+    { id: 9, url: '/10.jpg', title: 'Project Kappa', externalUrl: 'https://example.com/kappa' },
+    { id: 10, url: '/11.jpg', title: 'Project Lambda', externalUrl: 'https://example.com/lambda' },
+    { id: 11, url: '/12.jpg', title: 'Project Mu', externalUrl: 'https://example.com/mu' },
+    { id: 12, url: '/1.jpg', title: 'Project Nu', externalUrl: 'https://example.com/nu' },
+    { id: 13, url: '/5.jpg', title: 'Project Xi', externalUrl: 'https://example.com/xi' },
+    { id: 14, url: '/7.jpg', title: 'Project Omicron', externalUrl: 'https://example.com/omicron' },
+    { id: 15, url: '/8.jpg', title: 'Project Pi', externalUrl: 'https://example.com/pi' },
+    { id: 16, url: '/2.jpg', title: 'Project Rho', externalUrl: 'https://example.com/rho' },
+    { id: 17, url: '/4.jpg', title: 'Project Sigma', externalUrl: 'https://example.com/sigma' },
+    { id: 18, url: '/9.jpg', title: 'Project Tau', externalUrl: 'https://example.com/tau' },
+    { id: 19, url: '/6.jpg', title: 'Project Upsilon', externalUrl: 'https://example.com/upsilon' }
   ]
 })
 
 function Minimap() {
   const ref = useRef()
   const scroll = useScroll()
-  const { projects } = useSnapshot(state) // Use projects from state
+  const { projects } = useSnapshot(state)
   const { height } = useThree((state) => state.viewport)
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
-      // Give me a value between 0 and 1
-      //   starting at the position of my item
-      //   ranging across 4 / total length
-      //   make it a sine, so the value goes from 0 to 1 to 0.
       const y = scroll.curve(index / projects.length - 1.5 / projects.length, 4 / projects.length)
       easing.damp(child.scale, 'y', 0.15 + y / 6, 0.15, delta)
     })
   })
   return (
     <group ref={ref}>
-      {projects.map((_, i) => ( // Map over projects
+      {projects.map((_, i) => (
         <line key={i} geometry={geometry} material={material} position={[i * 0.06 - projects.length * 0.03, -height / 2 + 0.6, 0]} />
       ))}
     </group>
   )
 }
 
-function Item({ index, position, scale, project, c = new THREE.Color(), ...props }) { // Accept project prop
+function Item({ index, position, scale, project, c = new THREE.Color(), ...props }) {
   const ref = useRef()
   const scroll = useScroll()
-  const { clicked, projects } = useSnapshot(state) // Use projects from state
+  const { clicked, projects } = useSnapshot(state)
   const [hovered, hover] = useState(false)
-  const click = () => (state.clicked = index === clicked ? null : index)
+  const navigate = useNavigate() // Initialize useNavigate
+
+  const click = () => {
+    if (project.internalPath) {
+      navigate(project.internalPath)
+      state.clicked = null // Reset clicked state when navigating
+    } else if (project.externalUrl) {
+      window.open(project.externalUrl, '_blank')
+      state.clicked = null // Reset clicked state when navigating
+    } else {
+      state.clicked = index === clicked ? null : index // Only expand if no link
+    }
+  }
+
   const over = () => hover(true)
   const out = () => hover(false)
+
   useFrame((state, delta) => {
     const y = scroll.curve(index / projects.length - 1.5 / projects.length, 4 / projects.length)
     easing.damp3(ref.current.scale, [clicked === index ? 4.7 : scale[0], clicked === index ? 5 : 4 + y, 1], 0.15, delta)
@@ -82,7 +92,7 @@ function Item({ index, position, scale, project, c = new THREE.Color(), ...props
 }
 
 function Items({ w = 0.7, gap = 0.15 }) {
-  const { projects } = useSnapshot(state) // Use projects from state
+  const { projects } = useSnapshot(state)
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   return (
