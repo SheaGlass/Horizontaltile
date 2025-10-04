@@ -13,9 +13,15 @@ function Layout() {
   return (
     <>
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
-        <div style={{ position: 'absolute', top: 40, left: 40, fontSize: '24px', fontWeight: 'bold', color: 'white', pointerEvents: 'auto' }}>
-          <Link to="/" style={{ textDecoration: 'none', color: 'white' }} onClick={() => (state.clicked = null)}>Recent Projects</Link>
+        {/* Central Title */}
+        <div style={{ position: 'absolute', top: 40, width: '100%', textAlign: 'center', fontSize: '8vw', fontWeight: 'bold', color: 'white', pointerEvents: 'none', lineHeight: '1em' }}>
+          Shea.Glass
         </div>
+        {/* Recent Projects Section */}
+        <div style={{ position: 'absolute', top: 'calc(40px + 8vw + 20px)', width: '100%', textAlign: 'center', fontSize: '3vw', color: 'white', pointerEvents: 'none' }}>
+          Recent Projects
+        </div>
+        {/* Navigation links on the right */}
         <div style={{ position: 'absolute', top: 40, right: 40, display: 'flex', gap: '20px', pointerEvents: 'auto' }}>
           <Link to="/about" style={{ textDecoration: 'none', color: 'white' }} onClick={() => (state.clicked = null)}>About</Link>
           <Link to="/contact" style={{ textDecoration: 'none', color: 'white' }} onClick={() => (state.clicked = null)}>Contact</Link>
