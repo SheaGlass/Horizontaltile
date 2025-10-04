@@ -63,14 +63,21 @@ function Item({ index, position, scale, project, c = new THREE.Color(), ...props
   const navigate = useNavigate() // Initialize useNavigate
 
   const click = () => {
-    if (project.internalPath) {
-      navigate(project.internalPath)
-      state.clicked = null // Reset clicked state when navigating
-    } else if (project.externalUrl) {
-      window.open(project.externalUrl, '_blank')
-      state.clicked = null // Reset clicked state when navigating
+    if (clicked === index) {
+      // If already clicked (expanded), try to navigate
+      if (project.internalPath) {
+        navigate(project.internalPath)
+        state.clicked = null // Reset clicked state after navigation
+      } else if (project.externalUrl) {
+        window.open(project.externalUrl, '_blank')
+        state.clicked = null // Reset clicked state after navigation
+      } else {
+        // If no link, just collapse on second click
+        state.clicked = null
+      }
     } else {
-      state.clicked = index === clicked ? null : index // Only expand if no link
+      // First click (or clicking a different item), expand it
+      state.clicked = index
     }
   }
 
