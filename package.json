@@ -25,7 +25,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "dev": "react-scripts start --port 32100",
+    "dev": "PORT=32100 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
