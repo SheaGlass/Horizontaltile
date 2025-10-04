@@ -17,7 +17,7 @@ body {
   overscroll-behavior: none;
   background: #151515;
   color: #a0a0a0;
-  font-family: 'Inter var', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Inter var'; /* Added Helvetica */
 }
 
 h1 {
@@ -37,4 +37,23 @@ a {
 
 svg {
   fill: #a0a0a0;
+}
+
+/* Shiny Text Effect */
+.shiny-text {
+  background: linear-gradient(90deg, #fff, #aaa, #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  display: inline-block; /* Ensures background-clip works correctly */
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
