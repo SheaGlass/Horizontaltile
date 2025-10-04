@@ -106,7 +106,7 @@ function Items({ w = 0.7, gap = 0.15 }) {
     <ScrollControls horizontal damping={0.1} pages={(width - xW + projects.length * xW) / width}>
       <Minimap />
       <Scroll>
-        {projects.map((project, i) => <Item key={project.id} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} project={project} />) /* prettier-ignore */}
+        {projects.map((project, i) => <Item key={project.id} index={i} position={[i * xW, -0.5, 0]} scale={[w, 4, 1]} project={project} />) /* prettier-ignore */}
       </Scroll>
     </ScrollControls>
   )
