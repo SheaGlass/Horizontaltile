@@ -14,11 +14,11 @@ function Layout() {
     <>
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
         {/* Central Title */}
-        <div style={{ position: 'absolute', top: 40, width: '100%', textAlign: 'center', fontSize: '8vw', fontWeight: 'bold', color: 'white', pointerEvents: 'none', lineHeight: '1em' }}>
+        <div style={{ position: 'absolute', top: 20, width: '100%', textAlign: 'center', fontSize: '4vw', fontWeight: 'bold', color: 'white', pointerEvents: 'none', lineHeight: '1em' }}>
           Shea.Glass
         </div>
         {/* Recent Projects Section */}
-        <div style={{ position: 'absolute', top: 'calc(40px + 8vw + 20px)', width: '100%', textAlign: 'center', fontSize: '3vw', color: 'white', pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', top: 'calc(20px + 4vw + 10px)', width: '100%', textAlign: 'center', fontSize: '2vw', color: 'white', pointerEvents: 'none' }}>
           Recent Projects
         </div>
         {/* Navigation links on the right */}
