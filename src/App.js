@@ -69,7 +69,7 @@ function Item({ index, position, scale, project, c = new THREE.Color(), ...props
         navigate(project.internalPath)
         state.clicked = null // Reset clicked state after navigation
       } else if (project.externalUrl) {
-        window.open(project.externalUrl, '_blank')
+        window.location.href = project.externalUrl // Navigate in the same tab
         state.clicked = null // Reset clicked state after navigation
       } else {
         // If no link, just collapse on second click
